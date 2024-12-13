@@ -1,0 +1,2 @@
+command=LOAD, opcode=0x01, operand=42
+command=STORE, opcode=0x02, operand=3

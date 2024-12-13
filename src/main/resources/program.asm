@@ -1,0 +1,47 @@
+// LOAD 10
+LOAD 0x0A
+
+// NOT
+NOT
+
+// STORE 10
+STORE 0x0A
+
+// LOAD 11
+LOAD 0x0B
+
+// NOT
+NOT
+
+// STORE 11
+STORE 0x0B
+
+// LOAD 12
+LOAD 0x0C
+
+// NOT
+NOT
+
+// STORE 12
+STORE 0x0C
+
+// LOAD 13
+LOAD 0x0D
+
+// NOT
+NOT
+
+// STORE 13
+STORE 0x0D
+
+// LOAD 14
+LOAD 0x0E
+
+// NOT
+NOT
+
+// STORE 14
+STORE 0x0E
+
+// HALT
+HALT

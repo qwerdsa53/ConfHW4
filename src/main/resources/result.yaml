@@ -1,0 +1,23 @@
+memory:
+  - address: 0
+    value: 0
+  - address: 1
+    value: 0
+  - address: 2
+    value: 0
+  - address: 3
+    value: 0
+  - address: 4
+    value: 0
+  - address: 5
+    value: 0
+  - address: 6
+    value: 0
+  - address: 7
+    value: 0
+  - address: 8
+    value: 0
+  - address: 9
+    value: 0
+  - address: 10
+    value: 10

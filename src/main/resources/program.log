@@ -1,0 +1,16 @@
+command=LOAD, opcode=0x01, operand=10
+command=NOT, opcode=0x00
+command=STORE, opcode=0x02, operand=10
+command=LOAD, opcode=0x01, operand=11
+command=NOT, opcode=0x00
+command=STORE, opcode=0x02, operand=11
+command=LOAD, opcode=0x01, operand=12
+command=NOT, opcode=0x00
+command=STORE, opcode=0x02, operand=12
+command=LOAD, opcode=0x01, operand=13
+command=NOT, opcode=0x00
+command=STORE, opcode=0x02, operand=13
+command=LOAD, opcode=0x01, operand=14
+command=NOT, opcode=0x00
+command=STORE, opcode=0x02, operand=14
+command=HALT, opcode=0xFF

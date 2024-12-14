@@ -10,6 +10,8 @@ public class Interpreter {
     private static final int MEMORY_SIZE = 256;
     private final byte[] memory = new byte[MEMORY_SIZE];
     private int pointer = 0;
+    private int register = 0;
+
 
     public static void main(String[] args) throws IOException {
         if (args.length < 3) {
@@ -34,22 +36,28 @@ public class Interpreter {
         while (pc < program.length) {
             byte opcode = program[pc++];
             switch (opcode) {
-                case 0x00: // NO-OP (пустая команда)
+                case 0x00: // NO-OP
                     break;
                 case 0x01: // LOAD
                     pointer = program[pc++];
+                    register = memory[pointer] & 0xFF;
                     break;
                 case 0x02: // STORE
-                    memory[pointer] = program[pc++];
+                    pointer = program[pc++];
+                    memory[pointer] = (byte) register;
                     break;
                 case 0x03: // ADD
-                    memory[pointer] += program[pc++];
+                    register += program[pc++];
                     break;
                 case 0x04: // SUB
-                    memory[pointer] -= program[pc++];
+                    register -= program[pc++];
+                    break;
+
+                case (byte) 0x05: // NOT
+                    register = ~register;
                     break;
                 case (byte) 0xFF: // HALT
-                    pc = program.length; // Exit program
+                    pc = program.length;
                     break;
                 case (byte) 0xEB: // LOAD CONSTANT
                     int value = (program[pc++] & 0xFF) << 24 | (program[pc++] & 0xFF) << 16 | (program[pc++] & 0xFF) << 8 | (program[pc++] & 0xFF);
@@ -61,25 +69,26 @@ public class Interpreter {
 
 
                 case (byte) 0x3D: // READ FROM MEMORY
-                    if (pointer == 0) throw new IllegalStateException("Stack underflow"); // проверка стека
+                    if (pointer == 0) throw new IllegalStateException("Stack underflow");
                     int addressToRead = memory[--pointer] & 0xFF; // уменьшаем указатель
                     memory[pointer] = memory[addressToRead]; // записываем значение обратно
-                    pointer++; // увеличиваем указатель после записи
+                    pointer++;
                     break;
 
 
                 case (byte) 0x3E: // WRITE TO MEMORY
-                    if (pointer < 2) throw new IllegalStateException("Not enough values on stack"); // проверка стека
+                    if (pointer < 2) throw new IllegalStateException("Not enough values on stack");
                     int valueToWrite = memory[--pointer] & 0xFF; // значение
                     int addressToWrite = memory[--pointer] & 0xFF; // адрес
-                    memory[addressToWrite] = (byte) valueToWrite; // записываем значение в память
+                    memory[addressToWrite] = (byte) valueToWrite;
                     break;
 
 
                 case (byte) 0x15: // UNARY NOT
-                    if (pointer == 0) throw new IllegalStateException("Stack underflow"); // проверка стека
-                    memory[pointer - 1] = (byte) ~memory[pointer - 1]; // применяем побитовое НЕ
+                    if (pointer == 0) throw new IllegalStateException("Stack underflow");
+                    memory[pointer - 1] = (byte) ~memory[pointer - 1];
                     break;
+
 
                 default:
                     throw new IllegalArgumentException("Unknown opcode: " + opcode);

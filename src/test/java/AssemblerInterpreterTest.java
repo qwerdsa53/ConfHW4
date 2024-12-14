@@ -55,8 +55,8 @@ public class AssemblerInterpreterTest {
 
         assertTrue(Files.exists(Path.of(RESULT_FILE)));
         String resultContent = Files.readString(Path.of(RESULT_FILE));
-        assertTrue(resultContent.contains("address: 3")); // правильный адрес
-        assertTrue(resultContent.contains("value: 0"));  // значение в памяти
+        assertTrue(resultContent.contains("address: 3"));
+        assertTrue(resultContent.contains("value: 0"));
     }
 
     @Test
@@ -83,7 +83,7 @@ public class AssemblerInterpreterTest {
 
         assertTrue(Files.exists(Path.of(RESULT_FILE)));
         String resultContent = Files.readString(Path.of(RESULT_FILE));
-        assertTrue(resultContent.contains("value: 0")); // побитовая инверсия -1 -> 0
+        assertTrue(resultContent.contains("value: 0"));
     }
 
     @AfterEach

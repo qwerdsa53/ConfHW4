@@ -14,7 +14,8 @@ public class Assembler {
             "STORE", (byte) 0x02,
             "ADD", (byte) 0x03,
             "SUB", (byte) 0x04,
-            "HALT", (byte) 0xFF
+            "HALT", (byte) 0xFF,
+            "NOT", (byte) 0x05
     );
 
     public static void main(String[] args) throws IOException {
